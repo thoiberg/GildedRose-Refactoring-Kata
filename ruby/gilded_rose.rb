@@ -102,7 +102,7 @@ class GeneralItemPricingRule < PricingRule
   private
 
   def quality_modifier
-    @item.sell_in < 0 ? 2 : 1
+    @item.sell_in > 0 ? 1 : 2
   end
 end
 
@@ -132,14 +132,14 @@ class BackstagePassPricingRule < PricingRule
 
   def new_quality
     quality = case @item.sell_in
-              when (11..)
-                @item.quality + 1
-              when 6..10
-                @item.quality + 2
-              when 1..5
-                @item.quality + 3
               when (..0)
                 0
+              when 1..5
+                @item.quality + 3
+              when 6..10
+                @item.quality + 2
+              when (11..)
+                @item.quality + 1
               end
 
     [quality, MAX_QUALITY].min
