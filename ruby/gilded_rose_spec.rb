@@ -96,7 +96,7 @@ describe GildedRose do
         end
       end
 
-      context "when there are less than 5 days or less" do
+      context "when there are 5 days or less" do
         it "increases in quality three times as fast" do
           items = [Item.new(backstage_pass, 5, 15)]
           GildedRose.new(items).update_quality
